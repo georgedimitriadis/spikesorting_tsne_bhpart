@@ -171,7 +171,7 @@ void TSNE::computeGaussianPerplexity(double* sorted_distances, int* sorted_indic
 	double* cur_P = (double*)malloc((N - 1) * sizeof(double));
 	if (cur_P == NULL) { printf("Memory allocation failed!\n"); exit(1); }
 	row_P[0] = 0;
-	for (int n = 0; n < N; n++) row_P[n + 1] = row_P[n] + (int)K;
+	for (int n = 0; n < N; n++) row_P[n + 1] = row_P[n] + (int)(K - 1);
 
 	double cur_dist;
 	int cur_index;
@@ -194,7 +194,7 @@ void TSNE::computeGaussianPerplexity(double* sorted_distances, int* sorted_indic
 			// Compute Gaussian kernel row
 			for (int m = 0; m < K; m++)
 			{
-				cur_dist = sorted_distances[n*K + m];
+				cur_dist = sorted_distances[n*K + m + 1];
 				cur_P[m] = exp(-beta * cur_dist);
 			}
 
@@ -204,7 +204,7 @@ void TSNE::computeGaussianPerplexity(double* sorted_distances, int* sorted_indic
 			double H = .0;
 			for (int m = 0; m < K; m++)
 			{
-				cur_dist = sorted_distances[n*K + m];
+				cur_dist = sorted_distances[n*K + m + 1];
 				H += beta * (cur_dist * cur_P[m]);
 			}
 			H = (H / sum_P) + log(sum_P);
@@ -239,7 +239,7 @@ void TSNE::computeGaussianPerplexity(double* sorted_distances, int* sorted_indic
 		for (int m = 0; m < K; m++) cur_P[m] /= sum_P;
 		for (int m = 0; m < K; m++)
 		{
-			cur_index = sorted_indices[n*K + m];
+			cur_index = sorted_indices[n*K + m + 1];
 			col_P[row_P[n] + m] = cur_index;
 			val_P[row_P[n] + m] = cur_P[m];
 		}
