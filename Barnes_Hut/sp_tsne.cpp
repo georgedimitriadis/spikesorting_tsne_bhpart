@@ -22,7 +22,7 @@ using namespace std;
 
 // Perform t-SNE
 void TSNE::run(double* sorted_distances, int* sorted_indices, int N, int no_dims, int K,
-	int perplexity, double theta, double eta, int iterations, int verbose, double* Y) {
+	int perplexity, double theta, double eta, double exageration, int iterations, int verbose, double* Y) {
 
 	setbuf(stdout, NULL);
 	//setvbuf(stdout, NULL, _IONBF, 1024);
@@ -32,7 +32,7 @@ void TSNE::run(double* sorted_distances, int* sorted_indices, int N, int no_dims
 		printf("Perplexity ( = %i) too large for the number of data points (%i)!\n", perplexity, N);
 		exit(1);
 	}
-	if (verbose > 0) printf("Using no_dims = %d, perplexity = %d, learning rate = %f, and theta = %f\n", no_dims, perplexity, eta, theta);
+	if (verbose > 0) printf("Using no_dims = %d, perplexity = %d, learning rate = %f, exageration = %f and theta = %f\n", no_dims, perplexity, eta, exageration, theta);
 
 
 
@@ -42,7 +42,6 @@ void TSNE::run(double* sorted_distances, int* sorted_indices, int N, int no_dims
 	int max_iter = iterations, stop_lying_iter = 250, mom_switch_iter = 250;
 	double momentum = .5;
 	double final_momentum = .8;
-	float exageration = 12.0;
 
 	int* col_P = NULL;
 	double* val_P = NULL;
@@ -452,7 +451,7 @@ double TSNE::randn() {
 // Function that loads data from a t-SNE file
 // Note: this function does a malloc that should be freed elsewhere
 bool TSNE::load_data(double** sorted_distances, int** sorted_indices, int* n, int* no_dims, int* k, 
-	int* perplexity, double* theta, double* eta, int* iterations, int* verbose) {
+	int* perplexity, double* theta, double* eta, double* exageration, int* iterations, int* rand_seed, int* verbose) {
 
 	// Open file, read first 2 integers, allocate memory, and read the data
 	FILE *h;
@@ -463,18 +462,21 @@ bool TSNE::load_data(double** sorted_distances, int** sorted_indices, int* n, in
 	}
 
 
-	fread(theta, sizeof(double), 1, h);										// gradient accuracy
-	fread(eta, sizeof(double), 1, h);										// eta (learning rate)
+	fread(theta, sizeof(double), 1, h);					// gradient accuracy
+	fread(eta, sizeof(double), 1, h);					// eta (learning rate)
+	fread(exageration, sizeof(double), 1, h);			// early exageration
 
-	fread(n, sizeof(int), 1, h);											// number of datapoints
-	fread(no_dims, sizeof(int), 1, h);										// output dimensionality
+	fread(n, sizeof(int), 1, h);						// number of datapoints
+	fread(no_dims, sizeof(int), 1, h);					// output dimensionality
 
-	fread(k, sizeof(int), 1, h);											// Knns dimensionality
+	fread(k, sizeof(int), 1, h);						// Knns dimensionality
 	
-	fread(iterations, sizeof(int), 1, h);									// number of iterations
-	fread(verbose, sizeof(int), 1, h);										// verbosity (between 0 and 3)
+	fread(iterations, sizeof(int), 1, h);				// number of iterations
 
-	fread(perplexity, sizeof(int), 1, h);								// perplexity
+	fread(rand_seed, sizeof(int), 1, h);				// random seed
+	fread(verbose, sizeof(int), 1, h);					// verbosity (between 0 and 3)
+
+	fread(perplexity, sizeof(int), 1, h);				// perplexity
 	
 
 	*sorted_distances = (double*)malloc(*k * *n * sizeof(double));
@@ -483,7 +485,7 @@ bool TSNE::load_data(double** sorted_distances, int** sorted_indices, int* n, in
 
 	*sorted_indices = (int*)malloc(*k * *n * sizeof(int));
 	if (*sorted_indices == NULL) { printf("Memory allocation failed on sorted_indices malloc\n"); exit(1); }
-	sizeread = fread(*sorted_indices, sizeof(int), *n * *k, h);                               // the indices of the Knns
+	sizeread = fread(*sorted_indices, sizeof(int), *n * *k, h);                   // the indices of the Knns
 
 
 	fclose(h);
@@ -529,24 +531,34 @@ void TSNE::save_data(double* data, int n, int d, int verbose) {
 int main()
 {
 	int N, D, no_dims, k, iterations, perplexity;
-	double theta, eta;
+	double theta, eta, exageration;
 	double *sorted_distances = NULL; ;
 	int *sorted_indices = NULL;
-	int verbose;
+	int rand_seed, verbose;
 
 	TSNE* tsne = new TSNE();
 
 	time_t start = clock();
 	// Read the parameters and the dataset
-	if (tsne->load_data(&sorted_distances, &sorted_indices, &N, &no_dims, &k, &perplexity, &theta, &eta, &iterations, &verbose)) {
+	if (tsne->load_data(&sorted_distances, &sorted_indices, &N, &no_dims, &k, &perplexity, &theta, &eta, &exageration, &iterations, &rand_seed, &verbose)) {
 		
+		// Set random seed
+		if (rand_seed >= 0) {
+			if (verbose > 0) printf("Using random seed: %d\n", rand_seed);
+			srand((unsigned int)rand_seed);
+		}
+		else {
+			if (verbose > 0) printf("Using current time as random seed...\n");
+			srand(time(NULL));
+		}
+
 		double* Y = (double*)malloc(N * no_dims * sizeof(double));
 		if (Y == NULL) { printf("Memory allocation failed on Y malloc\n"); exit(1); }
 
 		// Now fire up the SNE implementation
 		//double* costs = (double*)calloc(N, sizeof(double));
 		//if (costs == NULL) { printf("Memory allocation failed costs\n"); exit(1); }
-		tsne->run(sorted_distances, sorted_indices, N, no_dims, k, perplexity, theta, eta, iterations, verbose, Y);
+		tsne->run(sorted_distances, sorted_indices, N, no_dims, k, perplexity, theta, eta, exageration, iterations, verbose, Y);
 	
 		// Save the results
 		tsne->save_data(Y, N, no_dims, verbose);
