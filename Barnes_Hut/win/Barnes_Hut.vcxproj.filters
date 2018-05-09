@@ -18,27 +18,27 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="..\src\sp_tsne.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="..\src\sptree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sp_tsne.h">
+    <ClInclude Include="..\src\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sptree.h">
+    <ClInclude Include="..\src\targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="..\src\sp_tsne.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sp_tsne.cpp">
+    <ClCompile Include="..\src\sptree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sptree.cpp">
+    <ClCompile Include="..\src\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

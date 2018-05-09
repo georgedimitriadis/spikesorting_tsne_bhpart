@@ -20,6 +20,8 @@
 
 using namespace std;
 
+const int MAX_PATH = 4096;
+
 // Perform t-SNE
 void TSNE::run(double* sorted_distances, int* sorted_indices, int N, int no_dims, int K,
 	int perplexity, double theta, double eta, double exageration, int iterations, int verbose, double* Y) {
@@ -109,9 +111,9 @@ void TSNE::run(double* sorted_distances, int* sorted_indices, int N, int no_dims
 		{
 			// Open file, write first 2 integers and then the data
 			FILE *h;
-			char interim_filename[_MAX_PATH];
-			sprintf_s(interim_filename, "interim_%06i.dat", iter);
-			fopen_s(&h, interim_filename, "w + b");
+			char interim_filename[MAX_PATH];
+			sprintf(interim_filename, "interim_%06i.dat", iter);
+			h = fopen(interim_filename, "w + b");
 			if (h == NULL)
 			{
 				printf("Error: could not open data file.\n");
@@ -498,7 +500,7 @@ void TSNE::save_data(double* data, double* costs, int n, int d, int verbose) {
 
 	// Open file, write first 2 integers and then the data
 	FILE *h;
-	fopen_s(&h, "result.dat", "w+b");
+	h = fopen("result.dat", "w+b");
 	if (h == NULL) {
 		printf("Error: could not open data file.\n");
 		return;
@@ -516,7 +518,7 @@ void TSNE::save_data(double* data, int n, int d, int verbose) {
 
 	// Open file, write first 2 integers and then the data
 	FILE *h;
-	fopen_s(&h, "result.dat", "w+b");
+	h = fopen("result.dat", "w+b");
 	if (h == NULL) {
 		printf("Error: could not open data file.\n");
 		return;
