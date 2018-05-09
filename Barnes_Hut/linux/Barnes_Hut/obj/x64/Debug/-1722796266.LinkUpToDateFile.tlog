@@ -1,0 +1,1 @@
+g++ -o "/home/george/projects/Barnes_Hut/bin/x64/Debug/Barnes_Hut.out" -Wl,--no-undefined -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack /home/george/projects/Barnes_Hut/obj/x64/Debug/sptree.o /home/george/projects/Barnes_Hut/obj/x64/Debug/sp_tsne.o /home/george/projects/Barnes_Hut/obj/x64/Debug/stdafx.o

@@ -1,0 +1,68 @@
+﻿  Validating architecture
+  Validating sources
+  Copying sources remotely to 'localhost'
+  Starting remote build
+  Compiling sources:
+  sptree.cpp
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sptree.cpp(335,55): warning : conversion to 'int' from '__gnu_cxx::__promote_2<int, unsigned int, double, double>::__type {aka double}' may alter its value [-Wfloat-conversion]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sptree.cpp(335,55): warning :   for (unsigned int i = 0; i < no_children; i++) depth = fmax(depth, children[i]->getDepth());
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sptree.cpp(335,55): warning :                                                        ^
+  sp_tsne.cpp
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(6): warning : ignoring #pragma warning  [-Wunknown-pragmas]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(105,31): warning : comparison between signed and unsigned integer expressions [-Wsign-compare]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(105,31): warning :     for (unsigned int i = 0; i < row_P[N]; i++) val_P[i] /= exageration;
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(105,31): warning :                                ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(159,8): warning : unused variable 'start' [-Wunused-variable]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(159,8): warning :   float start;
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(159,8): warning :         ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(160,8): warning : unused variable 'end' [-Wunused-variable]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(160,8): warning :   float end;
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(160,8): warning :         ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(486,68): warning : conversion to 'int' from 'size_t {aka long unsigned int}' may alter its value [-Wconversion]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(486,68): warning :   int sizeread = fread(*sorted_distances, sizeof(double), *n * *k, h);           // the Knns
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(486,68): warning :                                                                     ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(490,11): warning : conversion to 'int' from 'size_t {aka long unsigned int}' may alter its value [-Wconversion]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(490,11): warning :   sizeread = fread(*sorted_indices, sizeof(int), *n * *k, h);                   // the indices of the Knns
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(490,11): warning :            ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(486,6): warning : variable 'sizeread' set but not used [-Wunused-but-set-variable]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(486,6): warning :   int sizeread = fread(*sorted_distances, sizeof(double), *n * *k, h);           // the Knns
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(486,6): warning :       ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(554,20): warning : conversion to 'unsigned int' from 'time_t {aka long int}' may alter its value [-Wconversion]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(554,20): warning :     srand(time(NULL));
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(554,20): warning :                     ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(535,9): warning : unused variable 'D' [-Wunused-variable]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(535,9): warning :   int N, D, no_dims, k, iterations, perplexity;
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(535,9): warning :          ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(467,36): warning : ignoring return value of 'size_t fread(void*, size_t, size_t, FILE*)', declared with attribute warn_unused_result [-Wunused-result]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(467,36): warning :   fread(theta, sizeof(double), 1, h);     // gradient accuracy
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(467,36): warning :                                     ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(468,34): warning : ignoring return value of 'size_t fread(void*, size_t, size_t, FILE*)', declared with attribute warn_unused_result [-Wunused-result]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(468,34): warning :   fread(eta, sizeof(double), 1, h);     // eta (learning rate)
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(468,34): warning :                                   ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(469,42): warning : ignoring return value of 'size_t fread(void*, size_t, size_t, FILE*)', declared with attribute warn_unused_result [-Wunused-result]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(469,42): warning :   fread(exageration, sizeof(double), 1, h);   // early exageration
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(469,42): warning :                                           ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(471,29): warning : ignoring return value of 'size_t fread(void*, size_t, size_t, FILE*)', declared with attribute warn_unused_result [-Wunused-result]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(471,29): warning :   fread(n, sizeof(int), 1, h);      // number of datapoints
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(471,29): warning :                              ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(472,35): warning : ignoring return value of 'size_t fread(void*, size_t, size_t, FILE*)', declared with attribute warn_unused_result [-Wunused-result]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(472,35): warning :   fread(no_dims, sizeof(int), 1, h);     // output dimensionality
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(472,35): warning :                                    ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(474,29): warning : ignoring return value of 'size_t fread(void*, size_t, size_t, FILE*)', declared with attribute warn_unused_result [-Wunused-result]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(474,29): warning :   fread(k, sizeof(int), 1, h);      // Knns dimensionality
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(474,29): warning :                              ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(476,38): warning : ignoring return value of 'size_t fread(void*, size_t, size_t, FILE*)', declared with attribute warn_unused_result [-Wunused-result]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(476,38): warning :   fread(iterations, sizeof(int), 1, h);    // number of iterations
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(476,38): warning :                                       ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(478,37): warning : ignoring return value of 'size_t fread(void*, size_t, size_t, FILE*)', declared with attribute warn_unused_result [-Wunused-result]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(478,37): warning :   fread(rand_seed, sizeof(int), 1, h);    // random seed
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(478,37): warning :                                      ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(479,35): warning : ignoring return value of 'size_t fread(void*, size_t, size_t, FILE*)', declared with attribute warn_unused_result [-Wunused-result]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(479,35): warning :   fread(verbose, sizeof(int), 1, h);     // verbosity (between 0 and 3)
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(479,35): warning :                                    ^
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(481,38): warning : ignoring return value of 'size_t fread(void*, size_t, size_t, FILE*)', declared with attribute warn_unused_result [-Wunused-result]
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(481,38): warning :   fread(perplexity, sizeof(int), 1, h);    // perplexity
+E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\src\sp_tsne.cpp(481,38): warning :                                       ^
+  stdafx.cpp
+  Linking objects
+  Barnes_Hut.vcxproj -> E:\Code\Mine\spikesorting_tsne_bhpart\Barnes_Hut\linux\Barnes_Hut\bin\x64\Release\Barnes_Hut.out
